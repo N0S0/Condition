@@ -1,0 +1,19 @@
+table,th,td{
+  padding:0 8px;
+}
+td>p{
+  display: inline-block;
+}
+
+.condition-check{
+  display: flex;
+  list-style: none;
+}
+
+.condition-check>li{
+  padding: 0 8px;
+}
+
+.navbar-nav>li{
+  padding:0 4px;
+}
