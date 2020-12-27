@@ -25,22 +25,22 @@
               <td>@if (isset($condition->taion))
                 {{$condition->taion}}
                 @endif</td>
-              <td>@if ($condition->taste == 1)
+              <td>@if (strpos($condition->condition, '1') == true)
                 味覚異常
                 @endif
-                @if ($condition->smell == 1)
+                @if (strpos($condition->condition, '2') == true)
                 /嗅覚異常
                 @endif
-                @if ($condition->cough == 1)
+                @if (strpos($condition->condition, '3') == true)
                 /咳
                 @endif
-                @if ($condition->malaise == 1)
+                @if (strpos($condition->condition, '4') == true)
                 /倦怠感
                 @endif</td>
               <td>@if (isset($condition->comment))
                 {{$condition->comment}}
                 @endif</td>
-              <td>@if ($condition->physiology == 1)
+              <td>@if (strpos($condition->condition, '5') == true)
                 <p>生理中</p>
                 @endif</td>
                 <td>編集</td>

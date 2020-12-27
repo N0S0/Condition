@@ -21,17 +21,17 @@ Auth::routes();
 
 // Route::get('/home', 'ConditionController@conditions');
 
-Route::get('/{id}/index', function(){
-  return view('conditions/index')->name('index');
-});
+// Route::get('/{id}/index', function(){
+//   return view('conditions/index')->name('index');
+// });
 
-Route::get('/{id}/myPage', function(){
-  return view('conditions/myPage')->name('myPage');
-});
+// Route::get('/{id}/myPage', function(){
+//   return view('conditions/myPage')->name('myPage');
+// });
 
 Route::get('/{id}/index', 'ConditionController@conditions')->name('index');
 Route::get('/{id}/myPage','ConditionController@myPage')->name('myPage');
-Route::get('/{id}/todaysCondition','ConditionController@todaysCondition')->name('todaysCondition');
+Route::get('/{id}/todaysCondition','ConditionController@showTodaysCondition')->name('todaysCondition');
 Route::post('/{id}/todaysCondition','ConditionController@record');
 Route::get('/{id}/todaysCondition/edit','ConditionController@conditions')->name('todaysCondition.edit');
 

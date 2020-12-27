@@ -16,11 +16,11 @@
             <br><label for="taion">体温</label>
             <input type="text" id="taion" name="taion">
             <ul class="condition-check">
-              <li><label for="taste">味覚異常</label><input type="checkbox" name="taste" id="taste"></li>
-              <li><label for="smell">嗅覚異常</label><input type="checkbox" name="smell" id="smell"></li>
-              <li><label for="cough">咳・痰</label><input type="checkbox" name="cough" id="cough"></li>
-              <li><label for="malaise">倦怠感</label><input type="checkbox" name="malaise" id="malaise"></li>
-              <li><label for="physiology">生理中</label><input type="checkbox" name="physiology" id="physiology"></li>
+              <li><input type="checkbox" name="condition" id="taste" value="1"><label for="taste">味覚異常</label></li>
+              <li><input type="checkbox" name="condition" id="smell" value="1"><label for="smell">嗅覚異常</label></li>
+              <li><input type="checkbox" name="condition" id="cough" value="1"><label for="cough">咳・痰</label></li>
+              <li><input type="checkbox" name="condition" id="malaise" value="1"><label for="malaise">倦怠感</label></li>
+              <li><input type="checkbox" name="condition" id="physiology" value="1"><label for="physiology">生理中</label></li>
             </ul>
             コメント
             <br><textarea name="comment" id="comment" cols="30" rows="10"></textarea>
