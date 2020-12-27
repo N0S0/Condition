@@ -43,9 +43,10 @@ class ConditionController extends Controller
     $todaysCondition->user_id = Auth::user()->id;
     $todaysCondition->date = $request->date;
     $todaysCondition->taion = $request->taion;
-    $todaysCondition->condition = $request->condition;
+    $todaysCondition->condition = implode(",", $request->condition);
     $todaysCondition->comment = $request->comment;
     $todaysCondition->save();
+
     return redirect()->route('index',['id'=>$todaysCondition->user_id]);
   }
 }
