@@ -30,8 +30,27 @@ class ConditionController extends Controller
     return view('conditions/edit',['user'=>$user,'condition' => $condition]);
   }
 
-  public function edit(){
-
+  public function edit(int $id, int $condition_id,Request $request){
+    $user = Auth::user($id);
+    $condition = Condition::find($condition_id);
+    $condition->date = $request->date;
+    if($request->has('taion')){
+      $condition->taion = $request->taion;
+    }else{
+      $condition->taion = '';
+    }
+    if($request->has('condition')){
+      $condition->condition = implode(",", $request->condition);
+    }else{
+      $condition->condition = '';
+    }
+    if($request->has('comment')){
+      $condition->comment = $request->comment;
+    }else{
+      $condition->comment = '';
+    }
+    $condition->save();
+    return redirect()->route('conditions/index',['user'=>$user]);
   }
 
   public function myPage()
