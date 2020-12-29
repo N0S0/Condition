@@ -13,7 +13,7 @@
             <thead>
               <th>日付</th>
               <th>体温</th>
-              <th>体調</th>
+              <th>症状</th>
               <th>コメント</th>
               <th>その他</th>
             </thead>
@@ -44,7 +44,7 @@
                 <td>@if (strpos($condition->condition, '5') !== false)
                   <p>生理中</p>
                   @endif</td>
-                <td><a href="#">編集</a></td>
+                <td><a href="{{route('edit',['id'=>$user->id,'condition_id'=>$condition->id])}}">編集</a></td>
                 <td><a href="#">削除</a></td>
               </tr>
               @endforeach

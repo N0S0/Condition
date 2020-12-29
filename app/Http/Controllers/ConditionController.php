@@ -24,6 +24,16 @@ class ConditionController extends Controller
     return view('conditions/index',['user'=>$user, 'date'=>$date, 'conditions' => $conditions]);
   }
 
+  public function showEdit(int $id,int $condition_id){
+    $user = Auth::user($id);
+    $condition = Condition::find($condition_id);
+    return view('conditions/edit',['user'=>$user,'condition' => $condition]);
+  }
+
+  public function edit(){
+
+  }
+
   public function myPage()
   {
     $user = Auth::user();
