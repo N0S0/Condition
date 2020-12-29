@@ -53,6 +53,12 @@ class ConditionController extends Controller
     return redirect()->route('conditions/index',['user'=>$user]);
   }
 
+  public function delete(int $id, int $condition_id){
+    $user = Auth::user($id);
+    $condition = Condition::find($condition_id)->delete();
+    return redirect()->route('conditions/index',['user'=>$user]);
+  }
+
   public function myPage()
   {
     $user = Auth::user();
@@ -71,9 +77,21 @@ class ConditionController extends Controller
     $todaysCondition = new Condition();
     $todaysCondition->user_id = Auth::user()->id;
     $todaysCondition->date = $request->date;
+    if($request->has('taion')){
     $todaysCondition->taion = $request->taion;
-    $todaysCondition->condition = implode(",", $request->condition);
+    }else{
+    $todaysCondition->taion = '';
+    }
+    if($request->has('condition')){
+      $todaysCondition->condition = implode(",", $request->condition);
+    }else{
+      $todaysCondition->condition = '';
+    }
+    if($request->has('comment')){
     $todaysCondition->comment = $request->comment;
+    }else{
+    $todaysCondition->comment = '';
+    }
     $todaysCondition->save();
 
     return redirect()->route('index',['id'=>$todaysCondition->user_id]);
