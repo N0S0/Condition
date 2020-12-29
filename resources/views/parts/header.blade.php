@@ -25,6 +25,7 @@
         @else
         <li>USER:<a href="{{route ('myPage', ['id'=>$user->id])}}">{{$user->name}}</a></li>
         <li><a href="{{route ('index', ['id'=>$user->id])}}">一覧</a></li>
+        <li><a href="{{route('calendar',['id'=>$user->id])}}">カレンダー</a></li>
         <li><a href="{{route ('todaysCondition', ['id'=>$user->id])}}">記録</a></li>
         <li class="nav-item dropdown"><button><a href="{{route('logout')}}" onclick="event.preventDefault();
           document.getElementById('logout-form').submit();">ログアウト</a></button>

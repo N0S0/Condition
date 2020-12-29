@@ -16,6 +16,8 @@
               <th>症状</th>
               <th>コメント</th>
               <th>その他</th>
+              <th>{{-- ライン用 --}}</th>
+              <th>{{-- ライン用 --}}</th>
             </thead>
             <tbody>
               @foreach ($conditions as $condition)
@@ -45,10 +47,10 @@
                   <p>生理中</p>
                   @endif</td>
                 <td><a href="{{route('edit',['id'=>$user->id,'condition_id'=>$condition->id])}}">編集</a></td>
-                <td><form action="{{route('delete',['id'=>$user->id, 'condition_id'=>$condition->id])}}" method="post">
+                <td><form action="{{route('delete',['id'=>$user->id, 'condition_id'=>$condition->id])}}" method="post" class="delete-form">
                   @method('DELETE')
                   @csrf
-                  <button type="submit">削除</button>
+                  <button type="submit" class="link-style-btn">削除</button>
                 </form></td>
               </tr>
               @endforeach
