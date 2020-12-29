@@ -20,7 +20,7 @@ class ConditionController extends Controller
   {
     $user = Auth::user();
     $date = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at)->format('Y-m-d');
-    $conditions = Condition::all();
+    $conditions = Condition::orderBy('date')->get();
     return view('conditions/index',['user'=>$user, 'date'=>$date, 'conditions' => $conditions]);
   }
 
@@ -50,13 +50,13 @@ class ConditionController extends Controller
       $condition->comment = '';
     }
     $condition->save();
-    return redirect()->route('conditions/index',['user'=>$user]);
+    return redirect()->route('index',['id'=>$user->id]);
   }
 
   public function delete(int $id, int $condition_id){
     $user = Auth::user($id);
     $condition = Condition::find($condition_id)->delete();
-    return redirect()->route('conditions/index',['user'=>$user]);
+    return redirect()->route('index',['id'=>$user->id]);
   }
 
   public function myPage()

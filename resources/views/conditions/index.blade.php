@@ -45,7 +45,11 @@
                   <p>生理中</p>
                   @endif</td>
                 <td><a href="{{route('edit',['id'=>$user->id,'condition_id'=>$condition->id])}}">編集</a></td>
-                <td><a href="#">削除</a></td>
+                <td><form action="{{route('delete',['id'=>$user->id, 'condition_id'=>$condition->id])}}" method="post">
+                  @method('DELETE')
+                  @csrf
+                  <button type="submit">削除</button>
+                </form></td>
               </tr>
               @endforeach
 

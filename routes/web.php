@@ -33,3 +33,4 @@ Route::get('/{id}/todaysCondition','ConditionController@showTodaysCondition')->n
 Route::post('/{id}/todaysCondition','ConditionController@record');
 Route::get('/{id}/index/{condition_id}/edit','ConditionController@showEdit')->name('edit');
 Route::post('/{id}/index/{condition_id}/edit','ConditionController@edit');
+Route::delete('/{id}/index/{condition_id}/delete','ConditionController@delete')->name('delete');
