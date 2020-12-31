@@ -16,6 +16,7 @@ class CalendarWeekDay{
   }
 
   function render(){
-    return '<p class="day">'.$this->carbon->format("j").'</p>';
+    // return '<p class="day">'.$this->carbon->format("j").'</p>';
+    return $this->carbon->format("j");
   }
 }

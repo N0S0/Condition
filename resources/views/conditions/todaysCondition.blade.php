@@ -13,9 +13,11 @@
             @csrf
             <label for="date">今日の日付</label>
             <input type="date" name="date" id="date">
-            <br><label for="taion">体温</label>
+            <br><label for="taion">今日の体温</label>
             <input type="text" id="taion" name="taion">
+            
             <ul class="condition-check">
+              <li>症状：</li>
               <li><input type="checkbox" name="condition[]" id="taste" value="1"><label for="taste">味覚異常</label></li>
               <li><input type="checkbox" name="condition[]" id="smell" value="2"><label for="smell">嗅覚異常</label></li>
               <li><input type="checkbox" name="condition[]" id="cough" value="3"><label for="cough">咳・痰</label></li>

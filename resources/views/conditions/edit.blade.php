@@ -12,9 +12,10 @@
             @csrf
             <label for="date">今日の日付</label>
             <input type="date" name="date" id="date" value="{{old('date', $condition['date'])}}">
-            <br><label for="taion">体温</label>
+            <br><label for="taion">今日の体温</label>
             <input type="text" id="taion" name="taion" value="{{old('taion', $condition['taion'])}}">
             <ul class="condition-check">
+              <li>症状：</li>
               @if (strpos($condition['condition'],'1') !== false)
               <li><input type="checkbox" name="condition[]" id="taste" value="1" checked><label for="taste">味覚異常</label>
               </li>

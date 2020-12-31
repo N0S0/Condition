@@ -35,6 +35,7 @@ a{
 .condition-check{
   display: flex;
   list-style: none;
+  white-space: nowrap;
 }
 
 .condition-check>li{
@@ -43,4 +44,29 @@ a{
 
 .navbar-nav>li{
   padding:0 4px;
+}
+
+.annotation{
+  list-style: none;
+}
+
+.taion-green{
+  color: green;
+}
+
+.taion-red{
+  color: red;
+}
+
+.calendar-condition{
+  color: orange;
+}
+
+.calendar-physiology{
+  color: blueviolet;
+}
+
+.calendar-header{
+  display: flex;
+  justify-content: space-between;
 }
