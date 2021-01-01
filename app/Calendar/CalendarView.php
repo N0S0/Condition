@@ -71,9 +71,6 @@ class CalendarView
           $html[] = '<p class="calendar-comment">◆</p>';
         }
 
-
-
-
         $html[] = '</td>';
       }
       $html[] = '</tr>';
@@ -100,7 +97,6 @@ class CalendarView
     }
     return $weeks;
   }
-
 
   function todaysCondition($date)
   {

@@ -1,3 +1,13 @@
+/* register,login */
+.col-md-6{
+  display: flex;
+  white-space: nowrap;
+}
+
+.any{
+  margin:auto 0;
+}
+
 table,th,td{
   padding:0 8px;
 }
@@ -70,3 +80,4 @@ a{
   display: flex;
   justify-content: space-between;
 }
+

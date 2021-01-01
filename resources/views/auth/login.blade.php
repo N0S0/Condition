@@ -37,6 +37,7 @@
                 </span>
                 @enderror --}}
               </div>
+              <span class="any">※任意</span>
             </div>
 
             <div class="form-group row">
