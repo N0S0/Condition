@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Condition;
+use App\Condition\IndexDate;
 use Carbon\Carbon;
 use App\Http\Requests\TodaysCondition;
 
 
 class ConditionController extends Controller
 {
+  private $carbon;
+
   //ログインしていない場合はリダイレクト
   public function __construct(){
     $this->middleware('auth');
@@ -19,9 +22,19 @@ class ConditionController extends Controller
   public function conditions()
   {
     $user = Auth::user();
+    if(isset($_GET['prev'])){
+      $data = new IndexDate();
+      $month = $data->prevMonth();
+    }else if(isset($_GET['next'])){
+      $data = new IndexDate();
+      $month = $data->nextMonth();
+    }else if(isset($_GET['this']) || empty($_GET)){
+      $data = new IndexDate();
+      $month = $data->getMonth();
+    }
     $date = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at)->format('Y-m-d');
-    $conditions = Condition::orderBy('date')->get();
-    return view('conditions/index',['user'=>$user, 'date'=>$date, 'conditions' => $conditions]);
+    $conditions = Condition::whereDate('date','LIKE',"%{$month}%")->orderBy('date')->get();
+    return view('conditions/index',['user'=>$user, 'month'=>$month, 'date'=>$date, 'conditions' => $conditions]);
   }
 
   public function showEdit(int $id,int $condition_id){

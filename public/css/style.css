@@ -8,6 +8,18 @@
   margin:auto 0;
 }
 
+/* index */
+.month{
+  display: flex;
+  justify-content: space-around;
+}
+.month>div>form{
+  margin: auto;
+}
+.viewMonth{
+  margin-top: 12px;
+}
+
 table,th,td{
   padding:0 8px;
 }
