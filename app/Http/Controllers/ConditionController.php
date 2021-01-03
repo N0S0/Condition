@@ -19,7 +19,7 @@ class ConditionController extends Controller
     $this->middleware('auth');
   }
 
-  public function conditions()
+  public function conditions($id)
   {
     $user = Auth::user();
     if(isset($_GET['prev'])){
