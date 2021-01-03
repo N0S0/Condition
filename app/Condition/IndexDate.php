@@ -23,9 +23,9 @@ class IndexDate{
     $year = $this->carbon->format('Y');
     $month = $this->carbon->format('n');
     if(1 < $month){
-      $month  -= 1;
+      $month--;
     }else{
-      $year -= 1;
+      $year--;
       $month = 12;
     }
     $prevMonth = $year.'-'.$month; 
@@ -45,4 +45,5 @@ class IndexDate{
     $nextMonth = $year.'-'.$month; 
     return $nextMonth;
   }
+
 }

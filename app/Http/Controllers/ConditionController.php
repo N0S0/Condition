@@ -32,9 +32,11 @@ class ConditionController extends Controller
       $data = new IndexDate();
       $month = $data->getMonth();
     }
+    // $selectMonth = Condition::raw('DATE_FORMAT("date","%Y-%m")')->distinct()->orderBy('date','DESC')->get();
+    $selectMonth = Condition::select('date')->raw('DATE_FORMAT("date","%Y-%m")')->distinct()->orderBy('date','DESC')->get();
     $date = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at)->format('Y-m-d');
     $conditions = Condition::whereDate('date','LIKE',"%{$month}%")->orderBy('date')->get();
-    return view('conditions/index',['user'=>$user, 'month'=>$month, 'date'=>$date, 'conditions' => $conditions]);
+    return view('conditions/index',['user'=>$user, 'month'=>$month, 'date'=>$date, 'conditions' => $conditions,'selectMonth'=>$selectMonth]);
   }
 
   public function showEdit(int $id,int $condition_id){

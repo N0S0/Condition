@@ -93,3 +93,16 @@ a{
   justify-content: space-between;
 }
 
+/* closeAccount */
+.delete-message{
+  font-size: 30px;
+}
+
+.closeAccount{
+  list-style: none;
+  display: flex;
+}
+
+.closeAccount>li{
+  padding: 0 20px;
+}

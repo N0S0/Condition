@@ -7,7 +7,16 @@
     <div class="col-md-8">
       <div class="card">
         <div class="card-header">
-          <div class="month">
+          <div>
+            <select name="selectMonth" id="selectMonth">
+              <option>選択してください</option>
+              <?php
+                foreach ($selectMonth as $key => $thisMonth) {
+                  print('<option value="'.$key.'">'.$thisMonth->date.'</option>');
+                }
+              ?>
+            </select>
+          </div>
           <div>
             <form action="{{route('index',['id'=>$user->id])}}" method="get">
               <input type="submit" value="前月" name="prev">

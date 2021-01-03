@@ -15,7 +15,7 @@
               {{$user->email}}@endif</li>
             <li>利用開始日：{{$date}}</li>
           </ul>
-
+          <a href="{{route('closeAccount', ['id'=>$user->id])}}">アカウントを削除する</a>
 
         </div>
       </div>

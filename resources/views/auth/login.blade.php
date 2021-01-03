@@ -82,9 +82,14 @@
               </div>
             </div>
           </form>
-        </div>
-      </div>
+        </div>{{-- end of card-body --}}
+      </div>{{-- end of card --}}
+      <div>
+        後で消す
+      id→admin
+      pass→admin2020
     </div>
-  </div>
-</div>
+    </div>{{-- end of col-md-8 --}}
+  </div>{{-- end of row --}}
+</div>{{-- end of container --}}
 @endsection
