@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CalendarController extends Controller
 {
-  //
+  //ログインしていない場合はリダイレクト
+  public function __construct(){
+    $this->middleware('auth');
+  }
+
   public function show(){
     $user = Auth::user();
     $calendar = new CalendarView(time());
