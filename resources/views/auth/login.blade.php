@@ -88,6 +88,8 @@
         後で消す
       id→admin
       pass→admin2020
+      id→admin
+      pass→admin0001
     </div>
     </div>{{-- end of col-md-8 --}}
   </div>{{-- end of row --}}
