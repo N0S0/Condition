@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Condition extends Model
 {
-    //
-
+  //
+  protected $dates = [
+    'date'
+  ];
 }

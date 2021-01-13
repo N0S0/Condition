@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/','WelcomeController@index')->name('welcome');
+Route::get('/', 'WelcomeController@index')->name('welcome');
 
 Auth::routes();
 
@@ -20,12 +20,12 @@ Auth::routes();
 
 
 Route::get('/{id}/index', 'ConditionController@conditions')->name('index');
-Route::get('/{id}/myPage','ConditionController@myPage')->name('myPage');
-Route::get('/{id}/closeAccount','CloseAccountController@account')->name('closeAccount');
-Route::post('/{id}/closeAccount','CloseAccountController@delete');
-Route::get('/{id}/todaysCondition','ConditionController@showTodaysCondition')->name('todaysCondition');
-Route::post('/{id}/todaysCondition','ConditionController@record');
-Route::get('/{id}/calendar','CalendarController@show')->name('calendar');
-Route::get('/{id}/index/{condition_id}/edit','ConditionController@showEdit')->name('edit');
-Route::post('/{id}/index/{condition_id}/edit','ConditionController@edit');
-Route::delete('/{id}/index/{condition_id}/delete','ConditionController@delete')->name('delete');
+Route::get('/{id}/myPage', 'ConditionController@myPage')->name('myPage');
+Route::get('/{id}/closeAccount', 'CloseAccountController@account')->name('closeAccount');
+Route::post('/{id}/closeAccount', 'CloseAccountController@delete');
+Route::get('/{id}/todaysCondition', 'ConditionController@showTodaysCondition')->name('todaysCondition');
+Route::post('/{id}/todaysCondition', 'ConditionController@record');
+Route::get('/{id}/calendar', 'CalendarController@show')->name('calendar');
+Route::get('/{id}/index/{condition_id}/edit', 'ConditionController@showEdit')->name('edit');
+Route::post('/{id}/index/{condition_id}/edit', 'ConditionController@edit');
+Route::delete('/{id}/index/{condition_id}/delete', 'ConditionController@delete')->name('delete');

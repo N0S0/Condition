@@ -8,12 +8,13 @@
       <div class="card">
         <div class="card-header">
           <div>
+
             <select name="selectMonth" id="selectMonth">
               <option>選択してください</option>
               <?php
-                foreach ($selectMonth as $key => $thisMonth) {
-                  print('<option value="'.$key.'">'.$thisMonth->date.'</option>');
-                }
+              foreach ($selectMonth as $key => $thisMonth) {
+                print('<option value="' . $key . '">' . $thisMonth->date->format('Y-m') . '</option>');
+              }
               ?>
             </select>
           </div>
@@ -26,15 +27,14 @@
             <form action="{{route('index',['id'=>$user->id])}}" method="get">
               <input type="submit" value="今月" name="this">
             </form>
-            </div>
+          </div>
           <div>
             <form action="{{route('index',['id'=>$user->id])}}" method="get">
               <input type="submit" value="次月" name="next">
             </form>
           </div>
         </div>
-          <h3 class="viewMonth">{{$month}}の体温・体調一覧</h3>
-        </div>
+        <h3 class="viewMonth">{{$month}}の体温・体調一覧</h3>
 
         <div class="card-body">
           <table>
@@ -51,7 +51,7 @@
               @foreach ($conditions as $condition)
               <tr>
                 <td>
-                  {{$condition->date}}
+                  {{$condition->date->format('Y-m-d')}}
                 </td>
                 <td>@if (isset($condition->taion))
                   {{$condition->taion}}
@@ -73,7 +73,8 @@
                   @endif</td>
                 <td>@if (strpos($condition->condition, '5') !== false)
                   <p>生理中</p>
-                  @endif</td>
+                  @endif
+                </td>
                 <td><a href="{{route('edit',['id'=>$user->id,'condition_id'=>$condition->id])}}">編集</a></td>
                 <td>
                   <form action="{{route('delete',['id'=>$user->id, 'condition_id'=>$condition->id])}}" method="post"
@@ -88,17 +89,10 @@
 
             </tbody>
           </table>
+        </div><!-- end of card-body -->
+      </div><!-- end of card -->
+    </div><!-- end of col-md-8 -->
+  </div><!-- end of row -->
+</div><!-- end of container -->
 
-
-
-
-
-
-
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 @endsection
