@@ -28,6 +28,7 @@
               <input type="submit" value="今月" name="this">
             </form>
           </div>
+          <!-- 次月はいらないかも -->
           <div>
             <form action="{{route('index',['id'=>$user->id])}}" method="get">
               <input type="submit" value="次月" name="next">

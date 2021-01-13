@@ -43,6 +43,14 @@ class ConditionController extends Controller
     return view('conditions/index', ['user' => $user, 'month' => $month, 'date' => $date, 'conditions' => $conditions, 'selectMonth' => $selectMonth]);
   }
 
+  public function detailTodaysCondition($id, Request $request)
+  {
+    $condition_id = $request->condition_id;
+    $user = Auth::user();
+    $condition = Condition::where('user_id', $id)->where('id', $condition_id)->get();
+    return view('conditions/detailTodaysCondition', ['user' => $user, 'condition' => $condition]);
+  }
+
   public function showEdit(int $id, int $condition_id)
   {
     $user = Auth::user($id);

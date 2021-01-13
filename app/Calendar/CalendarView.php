@@ -4,6 +4,8 @@ namespace App\Calendar;
 
 use Carbon\Carbon;
 use Faker\Provider\ar_SA\Color;
+use Illuminate\Support\Facades\Auth;
+
 
 class CalendarView
 {
@@ -42,32 +44,36 @@ class CalendarView
       $html[] = '<tr class="' . $week->getClassName() . '">';
       $days = $week->getDays();
       foreach ($days as $day) {
-        $html[] = '<td class="' . $day->getClassName() . '">';
-        $html[] = $day->render();
-        $html[] = '<br>';
-
         $date = $this->carbon->format('Y-m-') . $day->render();
         $data = $this->todaysCondition($date);
 
+        $html[] = '<td class="' . $day->getClassName() . '">';
+        if (isset($data[0]->id)) {
+          $html[] = '<a href="' . route('detailTodaysCondition', ['id' => Auth::id(), 'condition_id' => $data[0]->id]) . '">' . $day->render() . '</a>';
+        } else {
+          $html[] = $day->render();
+        }
+        $html[] = '<br>';
+
         if (isset($data[0]->taion)) {
           // var_dump($data[0]->taion);
-          if($data[0]->taion < 37.5){
+          if ($data[0]->taion < 37.5) {
             $html[] = '<p class="taion-green">●</p>';
-          }else{
+          } else {
             $html[] = '<p class="taion-red">●</p>';
           }
         }
-        if(isset($data[0]->condition)){
+        if (isset($data[0]->condition)) {
           $val1 = '/1|2|3|4/';
-          if(preg_match($val1,$data[0]->condition) ==1){
+          if (preg_match($val1, $data[0]->condition) == 1) {
             $html[] = '<p class="calendar-condition">▲</p>';
           }
           $val2 = '/5/';
-          if(preg_match($val2,$data[0]->condition) ==1){
+          if (preg_match($val2, $data[0]->condition) == 1) {
             $html[] = '<p class="calendar-physiology">■</p>';
           }
         }
-        if(isset($data[0]->comment)){
+        if (isset($data[0]->comment)) {
           $html[] = '<p class="calendar-comment">◆</p>';
         }
 
@@ -102,6 +108,5 @@ class CalendarView
   {
     $todaysCondition = new getCondition($date);
     return $todaysCondition->getCondition($date);
-    // return $todaysCondition;
   }
 }
