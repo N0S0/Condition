@@ -22,7 +22,7 @@ class ConditionController extends Controller
     $this->middleware('auth');
   }
 
-  public function conditions($id)
+  public function index($id)
   {
     $user = Auth::user();
     if (isset($_GET['prev'])) {
@@ -42,6 +42,14 @@ class ConditionController extends Controller
     $conditions = Condition::where('user_id', $id)->whereDate('date', 'LIKE', "%{$month}%")->orderBy('date')->get();
     return view('conditions/index', ['user' => $user, 'month' => $month, 'date' => $date, 'conditions' => $conditions, 'selectMonth' => $selectMonth]);
   }
+
+  public function conditions($id, $selectMonth)
+  {
+    $month = $selectMonth;
+    $conditions = Condition::where('user_id', $id)->whereDate('date', 'LIKE', "%{$month}%")->orderBy('date')->get();
+    return response()->json($conditions);
+  }
+
 
   public function detailTodaysCondition($id, Request $request)
   {

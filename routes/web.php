@@ -19,7 +19,8 @@ Auth::routes();
 
 
 
-Route::get('/{id}/index', 'ConditionController@conditions')->name('index');
+Route::get('/{id}/index', 'ConditionController@index')->name('index');
+Route::get('/{id}/index/{selectMonth}', 'ConditionController@conditions');
 Route::get('/{id}/myPage', 'ConditionController@myPage')->name('myPage');
 Route::get('/{id}/closeAccount', 'CloseAccountController@account')->name('closeAccount');
 Route::post('/{id}/closeAccount', 'CloseAccountController@delete');

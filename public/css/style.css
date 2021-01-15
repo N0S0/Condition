@@ -1,108 +1,111 @@
 /* register,login */
-.col-md-6{
-  display: flex;
-  white-space: nowrap;
+.col-md-6 {
+    display: flex;
+    white-space: nowrap;
 }
 
-.any{
-  margin:auto 0;
+.any {
+    margin: auto 0;
 }
 
 /* index */
-.month{
-  display: flex;
-  justify-content: space-around;
+.month {
+    display: flex;
+    justify-content: space-around;
 }
-.month>div>form{
-  margin: auto;
+.month > div > form {
+    margin: auto;
 }
-.viewMonth{
-  margin-top: 12px;
+.viewMonth {
+    margin-top: 12px;
 }
 
-table,th,td{
-  padding:0 8px;
+table,
+th,
+td {
+    padding: 0 8px;
 }
-th,td{
-  border-bottom: 1px solid lightgray;
+th,
+td {
+    border-bottom: 1px solid lightgray;
 }
 th,
 td:first-child,
 td:nth-child(6),
-td:last-child{
-  white-space: nowrap;
+td:last-child {
+    white-space: nowrap;
 }
 
-td>p{
-  display: inline-block;
+td > p {
+    display: inline-block;
 }
 
-.delete-form{
-  margin: auto;
+.delete-form {
+    margin: auto;
 }
-.link-style-btn{
-  border: none;
-  background: none;
-  color: slateblue;
-}
-
-.link-style-btn:hover{
-  text-decoration: underline;
-  color: slateblue;
+.link-style-btn {
+    border: none;
+    background: none;
+    color: slateblue;
 }
 
-a{
-  color: slateblue;
-}
-.condition-check{
-  display: flex;
-  list-style: none;
-  white-space: nowrap;
+.link-style-btn:hover {
+    text-decoration: underline;
+    color: slateblue;
 }
 
-.condition-check>li{
-  padding: 0 8px;
+a {
+    color: slateblue;
+}
+.condition-check {
+    display: flex;
+    list-style: none;
+    white-space: nowrap;
 }
 
-.navbar-nav>li{
-  padding:0 4px;
+.condition-check > li {
+    padding: 0 8px;
 }
 
-.annotation{
-  list-style: none;
+.navbar-nav > li {
+    padding: 0 4px;
 }
 
-.taion-green{
-  color: green;
+.annotation {
+    list-style: none;
 }
 
-.taion-red{
-  color: red;
+.taion-green {
+    color: green;
 }
 
-.calendar-condition{
-  color: orange;
+.taion-red {
+    color: red;
 }
 
-.calendar-physiology{
-  color: blueviolet;
+.calendar-condition {
+    color: orange;
 }
 
-.calendar-header{
-  display: flex;
-  justify-content: space-between;
+.calendar-physiology {
+    color: blueviolet;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
 }
 
 /* closeAccount */
-.delete-message{
-  font-size: 30px;
+.delete-message {
+    font-size: 30px;
 }
 
-.closeAccount{
-  list-style: none;
-  display: flex;
+.closeAccount {
+    list-style: none;
+    display: flex;
 }
 
-.closeAccount>li{
-  padding: 0 20px;
+.closeAccount > li {
+    padding: 0 20px;
 }

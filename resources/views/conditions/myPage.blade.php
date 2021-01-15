@@ -12,7 +12,10 @@
           <ul>
             <li>ユーザー名：{{$user->name}}</li>
             <li>email：@if(isset($user->email))
-              {{$user->email}}@endif</li>
+              {{$user->email}}
+              @else
+              未登録
+              @endif</li>
             <li>利用開始日：{{$date}}</li>
           </ul>
           <a href="{{route('closeAccount', ['id'=>$user->id])}}">アカウントを削除する</a>
