@@ -43,13 +43,12 @@ class ConditionController extends Controller
     return view('conditions/index', ['user' => $user, 'month' => $month, 'date' => $date, 'conditions' => $conditions, 'selectMonth' => $selectMonth]);
   }
 
-  public function conditions($id, $selectMonth)
+  public function conditions(Request $request)
   {
-    $month = $selectMonth;
-    $conditions = Condition::where('user_id', $id)->whereDate('date', 'LIKE', "%{$month}%")->orderBy('date')->get();
-    return response()->json($conditions);
+    $month = $request->selectMonth;
+    $conditions = Condition::where('user_id', $request->id)->whereDate('date', 'LIKE', "%{$month}%")->orderBy('date')->get();
+    return $conditions;
   }
-
 
   public function detailTodaysCondition($id, Request $request)
   {
@@ -70,7 +69,6 @@ class ConditionController extends Controller
   {
     $user = Auth::user($id);
     $condition = Condition::find($condition_id);
-    $condition->date = $request->date;
     if ($request->has('taion')) {
       $condition->taion = $request->taion;
     } else {

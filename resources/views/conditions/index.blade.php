@@ -1,5 +1,8 @@
 @extends('layouts.app')
+
 @include('parts.header')
+
+
 
 @section('content')
 <div class="container">
@@ -8,34 +11,20 @@
       <div class="card">
         <div class="card-header">
           <div>
+            <form action="{{route('index',['id'=>$user->id])}}" method="get" id="month-form">
+              <select name="selectMonth" id="selectMonth">
+                <option>選択してください</option>
+                <?php
+                foreach ($selectMonth as $key => $thisMonth) {
+                  print('<option value="' . $thisMonth->date->format('Y-m') . '">' . $thisMonth->date->format('Y-m') . '</option>');
+                }
+                ?>
+              </select>
+            </form>
+          </div>
+          <h3 class="viewMonth" id="listMonth">{{$month}}の体温・体調一覧</h3>
 
-            <select name="selectMonth" id="selectMonth">
-              <option>選択してください</option>
-              <?php
-              foreach ($selectMonth as $key => $thisMonth) {
-                print('<option value="' . $key . '">' . $thisMonth->date->format('Y-m') . '</option>');
-              }
-              ?>
-            </select>
-          </div>
-          <div>
-            <form action="{{route('index',['id'=>$user->id])}}" method="get">
-              <input type="submit" value="前月" name="prev">
-            </form>
-          </div>
-          <div>
-            <form action="{{route('index',['id'=>$user->id])}}" method="get">
-              <input type="submit" value="今月" name="this">
-            </form>
-          </div>
-          <!-- 次月はいらないかも -->
-          <div>
-            <form action="{{route('index',['id'=>$user->id])}}" method="get">
-              <input type="submit" value="次月" name="next">
-            </form>
-          </div>
         </div>
-        <h3 class="viewMonth">{{$month}}の体温・体調一覧</h3>
 
         <div class="card-body">
           <table>
@@ -48,7 +37,7 @@
               <th>{{-- 下線用 --}}</th>
               <th>{{-- 下線用 --}}</th>
             </thead>
-            <tbody>
+            <tbody id="condition-tbody">
               @foreach ($conditions as $condition)
               <tr>
                 <td>

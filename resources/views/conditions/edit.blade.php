@@ -11,7 +11,7 @@
           <form action="{{route('edit',['id'=>$user->id,'condition_id'=>$condition->id])}}" method="post">
             @csrf
             <label for="date">今日の日付</label>
-            <input type="date" name="date" id="date" value="{{old('date', $condition['date'])}}">
+            <input type="date" name="text" id="date" value="{{old('date', $condition['date'])->format('Y-m-d')}}">
             <br><label for="taion">今日の体温</label>
             <input type="text" id="taion" name="taion" value="{{old('taion', $condition['taion'])}}">
             <ul class="condition-check">
