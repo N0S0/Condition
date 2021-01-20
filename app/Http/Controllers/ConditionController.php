@@ -25,17 +25,10 @@ class ConditionController extends Controller
   public function index($id)
   {
     $user = Auth::user();
-    if (isset($_GET['prev'])) {
-      $data = new IndexDate();
-      $month = $data->prevMonth();
-    } else if (isset($_GET['next'])) {
-      $data = new IndexDate();
-      $month = $data->nextMonth();
-    } else if (isset($_GET['this']) || empty($_GET)) {
-      $data = new IndexDate();
-      $month = $data->getMonth();
-    } else if (isset($_POST['selectMonth'])) {
+    if (isset($_POST['selectMonth'])) {
       $month = $_POST['selectMonth'];
+    } else {
+      $month = date('Y-m');
     }
     $selectMonth = Condition::where('user_id', $id)->select('date')->distinct()->orderBy('date', 'DESC')->get();
     $date = Carbon::createFromFormat('Y-m-d H:i:s', $user->created_at)->format('Y-m-d');
@@ -88,11 +81,12 @@ class ConditionController extends Controller
     return redirect()->route('index', ['id' => $user->id]);
   }
 
-  public function delete(int $id, int $condition_id)
+  public function delete(Request $request)
   {
-    $user = Auth::user($id);
+    $id = Auth::id();
+    $condition_id = Request::input('condition_id');
     $condition = Condition::find($condition_id)->delete();
-    return redirect()->route('index', ['id' => $user->id]);
+    return redirect()->route('index', ['id' => $id]);
   }
 
   public function myPage()
@@ -117,7 +111,7 @@ class ConditionController extends Controller
     if ($request->has('taion')) {
       $todaysCondition->taion = $request->taion;
     } else {
-      $todaysCondition->taion = '';
+      $todaysCondition->taion = NULL;
     }
     if ($request->has('condition')) {
       $todaysCondition->condition = implode(",", $request->condition);
@@ -127,7 +121,7 @@ class ConditionController extends Controller
     if ($request->has('comment')) {
       $todaysCondition->comment = $request->comment;
     } else {
-      $todaysCondition->comment = '';
+      $todaysCondition->comment = NULL;
     }
     $todaysCondition->save();
 

@@ -29,5 +29,5 @@ Route::post('/{id}/todaysCondition', 'ConditionController@record');
 Route::get('/{id}/calendar', 'CalendarController@show')->name('calendar');
 Route::get('/{id}/index/{condition_id}/edit', 'ConditionController@showEdit')->name('edit');
 Route::post('/{id}/index/{condition_id}/edit', 'ConditionController@edit');
-Route::delete('/{id}/index/{condition_id}/delete', 'ConditionController@delete')->name('delete');
+Route::post('/{id}/index/{condition_id}/delete', 'ConditionController@delete')->name('delete');
 Route::get('/{id}/detailTodaysCondition/{condition_id}', 'ConditionController@detailTodaysCondition')->name('detailTodaysCondition');
