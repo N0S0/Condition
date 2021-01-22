@@ -8,6 +8,6 @@ class Condition extends Model
 {
   //
   protected $dates = [
-    'date'
+    'date',
   ];
 }

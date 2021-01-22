@@ -65,7 +65,7 @@ class ConditionController extends Controller
     if ($request->has('taion')) {
       $condition->taion = $request->taion;
     } else {
-      $condition->taion = '';
+      $condition->taion = NULL;
     }
     if ($request->has('condition')) {
       $condition->condition = implode(",", $request->condition);
@@ -121,7 +121,7 @@ class ConditionController extends Controller
     if ($request->has('comment')) {
       $todaysCondition->comment = $request->comment;
     } else {
-      $todaysCondition->comment = NULL;
+      $todaysCondition->comment = '';
     }
     $todaysCondition->save();
 

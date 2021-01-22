@@ -12,7 +12,7 @@
       let id= {{$user->id}};
 
       $.ajax({
-          url: "/{id}/index/{selectMonth}",
+          url: `/${id}/index/${selectMonth}`,
           type: "GET",
           dataType: "json",
           data: {
@@ -20,8 +20,37 @@
             id: id,
           },
         })
-        .done(function(data) {
-          $("#condition-tbody").empty();
+        .done(function(data,id,selectMonth) {
+          tbody(data);
+        })
+        .fail(function(XMLHttpRequest, textStatus, error) {
+          alert("エラーが発生しました");
+        });
+    });
+    $(document).on('click','ajax_delete',function(){
+      const condition_id = $(this).data('id');
+      const id = $(this).data('user_id');
+      let date1 = $(this).data('date');
+      date1 = date1.substr(0,7);
+
+      $.ajax({
+        url:`/${id}/index/${condition_id}/delete`,
+        type:'POST',
+        dataType:'json',
+        data:{
+          id:id,
+          condition_id:condition_id,
+        },
+      }).done(function(data,id,selectMonth){
+        tbody(data,id,selectMonth)
+      }).fail(function(XMLHttpRequest,textStatus,error){
+        alert('エラーが発生しました');
+      });
+    });
+  });
+
+  function tbody(data,id,selectMonth){
+    $("#condition-tbody").empty();
           const date = data[0].date.substr(0, 7);
           $("#listMonth").text(date + "の体温・体調一覧");
           for (i = 0; i < data.length; i++) {
@@ -39,13 +68,13 @@
             if (data[i].condition.indexOf("1") != -1) {
               text += "味覚異常";
             }
-            if (data[i].condition.indexOf("2")!= -1) {
+            if (data[i].condition.indexOf("2") != -1) {
               text += "/嗅覚異常";
             }
-            if (data[i].condition.indexOf("3")!= -1) {
+            if (data[i].condition.indexOf("3") != -1) {
               text += "/咳";
             }
-            if (data[i].condition.indexOf("4")!= -1) {
+            if (data[i].condition.indexOf("4") != -1) {
               text += "/倦怠感";
             }
             td3.text(text);
@@ -74,16 +103,25 @@
               action:`/${id}/index/${data[i].id}/delete`,
               class: 'delete-form',
             });
-            let condition_id = a7.append($('<input />',{
+            let del = $('<input />',{
               type: 'hidden',
-              name:'condition_id',
-              value:`${data[i].id}`,
-            }));
-            condition_id.append($('<input />',{
+              name:'method',
+              value:'DELETE',
+            });
+            const csrf_token = $('meta[name="csrf-token"]').attr('content');
+            let csrf = $('<input />',{
+              type: 'hidden',
+              name:'_token',
+              value:csrf_token,
+            });
+            let btn = $('<input />',{
               type: 'submit',
-              class:'link-style-btn',
+              class:'link-style-btn ajax_delete',
               value:'削除',
-            }));
+            });
+            a7.append(del);
+            a7.append(csrf);
+            a7.append(btn);
             td7.append(a7);
 
             let tr = $("<tr>");
@@ -96,12 +134,8 @@
             tr.append(td7);
             $("#condition-tbody").append(tr);
           }
-        })
-        .fail(function(XMLHttpRequest, textStatus, error) {
-          alert("エラーが発生しました");
-        });
-    });
-  });
+
+  }
 </script>
 
 <div class="container">
@@ -122,13 +156,13 @@
 
                   $uniques = array_unique($array);
                   foreach ($uniques as $unique) {
-                    print('<option value="' . $unique. '">' . $unique . '</option>');
+                    print('<option value="' . $unique. '">' . substr($unique,0,4).'年'.substr($unique,5,2) . '月</option>');
                   }
                 ?>
               </select>
             </form>
           </div>
-          <h3 class="viewMonth" id="listMonth">{{$month}}の体温・体調一覧</h3>
+          <h3 class="viewMonth" id="listMonth">{{substr($month,0,4)}}年{{substr($month,5,2)}}月：体温・体調一覧</h3>
 
         </div>
 

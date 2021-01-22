@@ -14,8 +14,8 @@
             <label for="date">今日の日付</label>
             <input type="date" name="date" id="date">
             <br><label for="taion">今日の体温</label>
-            <input type="number" value="36.5" min="35.0" max="41.0" step="0.1" id="taion">
-            {{-- <input type="text" id="taion"> --}}
+            {{-- <input type="number" value="36.5" min="35.0" max="41.0" step="0.1" id="taion"> --}}
+            <input type="number" id="taion" min="35.0" max="41.0" step="0.1" name="taion">
             <ul class="condition-check">
               <li>症状：</li>
               <li><input type="checkbox" name="condition[]" id="taste" value="1"><label for="taste">味覚異常</label></li>
