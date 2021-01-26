@@ -9,6 +9,7 @@ use App\Condition\IndexDate;
 use Carbon\Carbon;
 use App\Http\Requests\TodaysCondition;
 use Illuminate\Support\Facades\DB;
+use Request as PostRequest;
 
 
 
@@ -84,8 +85,12 @@ class ConditionController extends Controller
   public function delete(Request $request)
   {
     $id = Auth::id();
-    $condition_id = Request::input('condition_id');
-    $condition = Condition::find($condition_id)->delete();
+    if (isset($request->condition_id)) {
+      $condition_id = $request->condition_id;
+    } else {
+      $condition_id = PostRequest::input('condition_id');
+    }
+    $condition = Condition::where('user_id', $id)->where('id', $condition_id)->delete();
     return redirect()->route('index', ['id' => $id]);
   }
 

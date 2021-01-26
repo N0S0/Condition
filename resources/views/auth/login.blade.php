@@ -85,10 +85,12 @@
       </div>{{-- end of card-body --}}
     </div>{{-- end of card --}}
     <div>
-      後で消す
+      後で消す<br>
       id→admin
-      pass→admin2020
-      MyPCではこちらも
+      pass→admin2020<br>
+      id→admin0002
+      pass→admin0002<br>
+      MyPCではこちらも<br>
       id→admin0001
       pass→admin0001
     </div>
