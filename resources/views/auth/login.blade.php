@@ -88,8 +88,6 @@
       後で消す<br>
       id→admin
       pass→admin2020<br>
-      id→admin0002
-      pass→admin0002<br>
       MyPCではこちらも<br>
       id→admin0001
       pass→admin0001

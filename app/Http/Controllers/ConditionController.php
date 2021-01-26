@@ -23,11 +23,13 @@ class ConditionController extends Controller
     $this->middleware('auth');
   }
 
-  public function index($id)
+  public function index($id, Request $request)
   {
     $user = Auth::user();
     if (isset($_POST['selectMonth'])) {
       $month = $_POST['selectMonth'];
+    } else if (isset($request->selectMonth)) {
+      $month = $request->selectMonth;
     } else {
       $month = date('Y-m');
     }
@@ -91,7 +93,8 @@ class ConditionController extends Controller
       $condition_id = PostRequest::input('condition_id');
     }
     $condition = Condition::where('user_id', $id)->where('id', $condition_id)->delete();
-    return redirect()->route('index', ['id' => $id]);
+    $selectMonth = $request->selectMonth;
+    return redirect()->route('index', ['id' => $id, 'selectMonth' => $selectMonth]);
   }
 
   public function myPage()
