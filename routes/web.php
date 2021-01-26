@@ -31,3 +31,7 @@ Route::get('/{id}/index/{condition_id}/edit', 'ConditionController@showEdit')->n
 Route::post('/{id}/index/{condition_id}/edit', 'ConditionController@edit');
 Route::delete('/{id}/index/{condition_id}/delete', 'ConditionController@delete')->name('delete');
 Route::get('/{id}/detailTodaysCondition/{condition_id}', 'ConditionController@detailTodaysCondition')->name('detailTodaysCondition');
+
+
+// guest
+Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');

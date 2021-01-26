@@ -79,6 +79,7 @@
               {{ __('Forgot Your Password?') }}
             </a>
             @endif
+            <br><br><a class="btn btn-primary" href="{{ route('login.guest') }}">ゲストログイン</a>
           </div>
         </div>
         </form>
@@ -90,7 +91,11 @@
       pass→admin2020<br>
       MyPCではこちらも<br>
       id→admin0001
-      pass→admin0001
+      pass→admin0001<br>
+      guestlogin<br>
+      id→guest
+      pass→guestpass
+
     </div>
   </div>{{-- end of col-md-8 --}}
 </div>{{-- end of row --}}

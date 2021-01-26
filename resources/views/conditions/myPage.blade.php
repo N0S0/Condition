@@ -18,7 +18,9 @@
               @endif</li>
             <li>利用開始日：{{$date}}</li>
           </ul>
+          @if (Auth::id() != 4)
           <a href="{{route('closeAccount', ['id'=>$user->id])}}">アカウントを削除する</a>
+          @endif
 
         </div>
       </div>

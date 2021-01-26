@@ -46,4 +46,14 @@ class LoginController extends Controller
   {
     return 'name';
   }
+
+  private const GUEST_USER_ID = 4;
+
+  public function guestLogin()
+  {
+    if (Auth::loginUsingId(self::GUEST_USER_ID)) {
+      return redirect('/');
+    }
+    return redirect('/');
+  }
 }

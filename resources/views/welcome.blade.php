@@ -74,7 +74,7 @@
       <a href="{{ route('index',['id'=>$user->id]) }}">Home</a>
       @else
       <a href="{{ route('login') }}">Login</a>
-
+      <a class="nav-link" href="{{ route('login.guest') }}">ゲストログイン</a>
       @if (Route::has('register'))
       <a href="{{ route('register') }}">Register</a>
       @endif
