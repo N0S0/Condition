@@ -12,7 +12,26 @@
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
+  <script>
+    $(function () {
+  // ハンバーガーメニュー
+  $(".hamburger").click(function () {
+    $(this).toggleClass("active");
+    if ($(this).hasClass("active")) {
+      $(".nav-menu").addClass("active");
+      $(".nav-menu").fadeIn(500);
+    } else {
+      $(".nav-menu").removeClass("active");
+      $(".nav-menu").fadeOut(500);
+    }
+    $(".nav-menu a").click(function () {
+      $(".nav-menu").removeClass("active");
+      $(".nav-menu").fadeOut(1000);
+      $(".hamburger").removeClass("active");
+    });
+  });
+});
+  </script>
 
 
   <!-- Fonts -->

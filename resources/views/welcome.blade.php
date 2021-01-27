@@ -87,7 +87,9 @@
       <div class="title m-b-md">
         Condition
       </div>
-
+      @auth
+      <a href="{{ route('index',['id'=>$user->id]) }}">体調管理画面へ</a>
+      @endif
 
     </div>
   </div>

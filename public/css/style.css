@@ -109,3 +109,124 @@ a {
 .closeAccount > li {
     padding: 0 20px;
 }
+
+.logoutBtn {
+    text-decoration: none;
+    background: none;
+    border: none;
+    color: #fff;
+}
+
+/* スマホ対応 */
+@media screen and (max-width: 767px) {
+    body {
+        overflow: hidden;
+    }
+
+    /* hamburger */
+    .nav-menu {
+        position: fixed;
+        z-index: 12;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.75);
+        text-align: center;
+        width: 100%;
+        /* height: 100%; */
+        display: none;
+    }
+
+    .nav-menu {
+        width: 100%;
+        height: 100vh;
+        margin: 0 auto;
+        padding: 0;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .nav-menu > li {
+        font-size: 24px;
+        list-style-type: none;
+        width: 100%;
+        padding-bottom: 0px;
+    }
+
+    .nav-menu > li:last-child {
+        padding-bottom: 0;
+    }
+
+    .nav-menu > li > a,
+    .logoutBtn {
+        display: block;
+        color: #fff;
+        padding: 15px 0;
+        font-weight: bold;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+    /*ボタンのスタイル*/
+    .hamburger {
+        position: fixed;
+        right: 18px;
+        top: 3px;
+        width: 45px;
+        height: 45px;
+        cursor: pointer;
+        z-index: 13;
+        display: block;
+    }
+
+    .hamburger span {
+        display: block;
+        position: absolute;
+        width: 35px;
+        border-bottom: solid 4px #333;
+        -webkit-transition: 0.35s ease-in-out;
+        -moz-transition: 0.35s ease-in-out;
+        transition: 0.35s ease-in-out;
+        left: 6px;
+    }
+
+    .hamburger span:nth-child(1) {
+        top: 9px;
+    }
+
+    .hamburger span:nth-child(2) {
+        top: 20px;
+    }
+
+    .hamburger span:nth-child(3) {
+        top: 31px;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        top: 18px;
+        left: 6px;
+        -webkit-transform: rotate(-45deg);
+        -moz-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+        border-bottom: solid 3px #333;
+    }
+    .hamburger.active span:nth-child(2),
+    .hamburger.active span:nth-child(3) {
+        top: 18px;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        transform: rotate(45deg);
+        border-bottom: solid 3px #333;
+    }
+
+    .top-right {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .hamburger {
+        display: none;
+    }
+}

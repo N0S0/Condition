@@ -47,13 +47,13 @@ class LoginController extends Controller
     return 'name';
   }
 
-  private const GUEST_USER_ID = 4;
+  private const GUEST_USER_ID = 1;
 
   public function guestLogin()
   {
     if (Auth::loginUsingId(self::GUEST_USER_ID)) {
-      return redirect('/');
+      return redirect()->route('index', ['id' => Auth::id()]);
     }
-    return redirect('/');
+    return redirect()->route('index', ['id' => Auth::id()]);
   }
 }

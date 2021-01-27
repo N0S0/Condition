@@ -11,7 +11,7 @@
       </ul>
 
       <!-- Right Side Of Navbar -->
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto nav-menu">
         <!-- Authentication Links -->
         @guest
         <li class="nav-item">
@@ -23,11 +23,11 @@
         </li>
         @endif
         @else
-        <li>USER:<a href="{{route ('myPage', ['id'=>$user->id])}}">{{$user->name}}</a></li>
+        <li>USER：<a href="{{route ('myPage', ['id'=>$user->id])}}">{{$user->name}}</a></li>
         <li><a href="{{route ('index', ['id'=>$user->id])}}">一覧</a></li>
         <li><a href="{{route('calendar',['id'=>$user->id])}}">カレンダー</a></li>
         <li><a href="{{route ('todaysCondition', ['id'=>$user->id])}}">記録</a></li>
-        <li class="nav-item dropdown"><button><a href="{{route('logout')}}" onclick="event.preventDefault();
+        <li class="nav-item dropdown"><button class="logoutBtn"><a href="{{route('logout')}}" onclick="event.preventDefault();
           document.getElementById('logout-form').submit();">ログアウト</a></button>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
@@ -35,6 +35,11 @@
         </li>
         @endguest
       </ul>
+    </div>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
     </div>
   </div>
 </nav>

@@ -69,6 +69,11 @@
           }
           let td3 = $("<td>");
           let text = "";
+          let text2 = "";
+
+          if (data[i].condition == null || data[i].condition == undefined) {
+            text = '';
+          }else{
           if (data[i].condition.indexOf("1") != -1) {
               text += "味覚異常";
           }
@@ -81,18 +86,19 @@
           if (data[i].condition.indexOf("4") != -1) {
             text += "/倦怠感";
           }
+          if (data[i].condition.indexOf("5")!= -1) {
+            text2 = "生理中";
+          }
+        }
           td3.text(text);
           let td4 = $("<td>");
 
           if (data[i].comment) {
             td4.text(data[i].comment);
           }
-          let text2 = "";
           let td5 = $("<td>");
 
-          if (data[i].condition.indexOf("5")!= -1) {
-            text2 = "生理中";
-          }
+
           td5.text(text2);
 
           let td6 = $("<td>");
