@@ -53,7 +53,142 @@
     });
   });
 
-  function tbody(data,id,selectMonth){
+  function tbody(data,id,selectMonth) {
+    // スマホ
+  if (window.matchMedia && window.matchMedia('(max-device-width: 640px)').matches) {
+    $("#sp-condition-table").empty();
+        const date = data[0].date.substr(0, 7);
+        $("#listMonth").html(date.substr(0,4)+"年"+date.substr(5,2)+ "月<br>体温・体調一覧");
+        
+        for (i = 0; i < data.length; i++) {
+          let th1 = $("<th>");
+            th1.text("日付");
+          let td1 = $("<td>");
+          const date = data[i].date.replace("00:00:00", "");
+          td1.text(date);
+
+          let th2 = $("<th>");
+            th2.text("体温");
+          let td2 = $("<td>");
+
+          if (data[i].taion) {
+            td2.text(data[i].taion);
+          }
+          let th3 = $("<th>");
+            th3.text("症状");
+          let td3 = $("<td>");
+          let text = "";
+          let text2 = "";
+
+          if (data[i].condition == null || data[i].condition == undefined) {
+            text = '';
+          }else{
+          if (data[i].condition.indexOf("1") != -1) {
+              text += "味覚異常";
+          }
+          if (data[i].condition.indexOf("2") != -1) {
+            if(text == ''){
+            text += "嗅覚異常";
+            }else{
+              text += "/嗅覚異常";
+            }
+          }
+          if (data[i].condition.indexOf("3") != -1) {
+            if(text == ''){
+              text += '咳';
+            }else{
+              text += "/咳";
+            }
+          }
+          if (data[i].condition.indexOf("4") != -1) {
+            if(text == ''){
+            text += "倦怠感";
+          }else{
+            text += "/倦怠感";
+          }
+        }
+          if (data[i].condition.indexOf("5")!= -1) {
+            text2 = "生理中";
+          }
+        }
+          td3.text(text);
+
+          let th4 = $("<th>");
+            th4.text("コメント");
+          let td4 = $("<td>");
+
+          if (data[i].comment) {
+            td4.text(data[i].comment);
+          }
+
+          let th5 = $("<th>");
+            th5.text("その他");
+          let td5 = $("<td>");
+
+          td5.text(text2);
+
+          let td6 = $("<td>");
+          let a6 = $('<a>');
+          a6.text('編集');
+          a6.attr('href', `/${id}/index/${data[i].id}/edit`);
+          td6.append(a6);
+
+          let td7 = $("<td>");
+          let a7 = $('<form />',{
+            method:'post',
+            action:`/${id}/index/${data[i].id}/delete`,
+            class: 'delete-form',
+          });
+          let input_month = $('<input />',{
+            type: 'hidden',
+            name:'selectMonth',
+            value: selectMonth,
+          });
+          let condition_id = $('<input />',{
+            type: 'hidden',
+            name:'condition_id',
+            value: data[i].id,
+          });
+          let del = $('<input />',{
+            type: 'hidden',
+            name:'_method',
+            value:'DELETE',
+          });
+          const csrf_token = $('meta[name="csrf-token"]').attr('content');
+          let csrf = $('<input />',{
+            type: 'hidden',
+            name:'_token',
+            value:csrf_token,
+          });
+          let btn = $('<input />',{
+            type: 'submit',
+            class:'link-style-btn ajax_delete',
+            value:'削除',
+          });
+          a7.append(input_month);
+          a7.append(condition_id);
+          a7.append(del);
+          a7.append(csrf);
+          a7.append(btn);
+          td7.append(a7);
+
+          let tr1 = $('<tr>');
+          let tr2 = $('<tr>');
+          let tr3 = $('<tr>');
+          let tr4 = $('<tr>');
+          let tr5 = $('<tr>');
+          let tr6 = $('<tr>');
+            
+          tr1.append(th1).append(td1);
+          tr2.append(th2).append(td2);
+          tr3.append(th3).append(td3);
+          tr4.append(th4).append(td4);
+          tr5.append(th5).append(td5);
+          tr6.append(td6).append(td7);
+          $("#sp-condition-table").append(tr1).append(tr2).append(tr3).append(tr4).append(tr5).append(tr6);
+        }
+
+  } else {//PC
     $("#condition-tbody").empty();
         const date = data[0].date.substr(0, 7);
         $("#listMonth").html(date.substr(0,4)+"年"+date.substr(5,2)+ "月：体温・体調一覧");
@@ -78,14 +213,26 @@
               text += "味覚異常";
           }
           if (data[i].condition.indexOf("2") != -1) {
-            text += "/嗅覚異常";
+            if(text == ''){
+            text += "嗅覚異常";
+            }else{
+              text += "/嗅覚異常";
+            }
           }
           if (data[i].condition.indexOf("3") != -1) {
-            text += "/咳";
+            if(text == ''){
+              text += '咳';
+            }else{
+              text += "/咳";
+            }
           }
           if (data[i].condition.indexOf("4") != -1) {
+            if(text == ''){
+            text += "倦怠感";
+          }else{
             text += "/倦怠感";
           }
+        }
           if (data[i].condition.indexOf("5")!= -1) {
             text2 = "生理中";
           }
@@ -156,8 +303,10 @@
           tr.append(td7);
           $("#condition-tbody").append(tr);
         }
-
   }
+}
+
+
 </script>
 
 <div class="container">
@@ -188,11 +337,77 @@
           <?php
           $date2 = new DateTime($month);
           ?>
-          <h3 class="viewMonth" id="listMonth"><?php print($date2->format('Y年m月')); ?>：体温・体調一覧</h3>
-
+          <h3 class="viewMonth" id="listMonth"><?php print($date2->format('Y年m月')); ?><br>体温・体調一覧</h3>
         </div>
 
         <div class="card-body">
+          <?php
+          $ua = $_SERVER['HTTP_USER_AGENT'];
+          $browser = ((strpos($ua, 'iPhone') !== false) || (strpos($ua, 'iPod') !== false) || (strpos($ua, 'Android') !== false));
+          ?>
+          {{-- スマホ用 --}}
+          <?php if($browser == true): ?>
+          <table id="sp-condition-table">
+            @foreach ($conditions as $condition)
+            <tr>
+              <th>日付</th>
+              <td>{{$condition->date->format('Y-m-d')}}</td>
+            </tr>
+            <tr>
+              <th>体温</th>
+              <td class="sp-condition-td td-taion">@if (isset($condition->taion))
+                {{$condition->taion}}
+                @endif</td>
+            </tr>
+            <tr>
+              <th>症状</th>
+              <td>@if (strpos($condition->condition, '1') !== false)
+                味覚異常
+                @endif
+                @if (strpos($condition->condition, '2') !== false)
+                /嗅覚異常
+                @endif
+                @if (strpos($condition->condition, '3') !== false)
+                /咳
+                @endif
+                @if (strpos($condition->condition, '4') !== false)
+                /倦怠感
+                @endif</td>
+            </tr>
+            <tr>
+              <th>コメント</th>
+              <td>@if (isset($condition->comment))
+                {{$condition->comment}}
+                @endif</td>
+            </tr>
+            <tr>
+              <th>その他</th>
+              <td>@if (strpos($condition->condition, '5') !== false)
+                <p>生理中</p>
+                @endif
+              </td>
+            </tr>
+            <tr>
+              <td><a href="{{route('edit',['id'=>$user->id,'condition_id'=>$condition->id])}}">編集</a></td>
+              <td>
+                <form action="{{route('delete',['id'=>$user->id, 'condition_id'=>$condition->id])}}" method="post"
+                  class="delete-form">
+                  @method('DELETE')
+                  @csrf
+                  <button type="submit" class="link-style-btn">削除</button>
+                </form>
+              </td>
+            </tr>
+            </thead>
+            <tr>
+              @endforeach
+
+              </tbody>
+
+          </table>
+
+
+          <?php else: ?>
           <table>
             <thead>
               <th>日付</th>
@@ -245,6 +460,8 @@
 
             </tbody>
           </table>
+          <?php endif; ?>
+
         </div><!-- end of card-body -->
       </div><!-- end of card -->
     </div><!-- end of col-md-8 -->
