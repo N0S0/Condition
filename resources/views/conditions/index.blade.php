@@ -81,27 +81,27 @@
           let text2 = "";
 
           if (data[i].condition == null || data[i].condition == undefined) {
-            text = '';
+            text = "";
           }else{
           if (data[i].condition.indexOf("1") != -1) {
               text += "味覚異常";
           }
           if (data[i].condition.indexOf("2") != -1) {
-            if(text == ''){
+            if(text == ""){
             text += "嗅覚異常";
             }else{
               text += "/嗅覚異常";
             }
           }
           if (data[i].condition.indexOf("3") != -1) {
-            if(text == ''){
-              text += '咳';
+            if(text == ""){
+              text += '咳・痰';
             }else{
-              text += "/咳";
+              text += "/咳・痰";
             }
           }
           if (data[i].condition.indexOf("4") != -1) {
-            if(text == ''){
+            if(text == ""){
             text += "倦怠感";
           }else{
             text += "/倦怠感";
@@ -111,6 +111,7 @@
             text2 = "生理中";
           }
         }
+        
           td3.text(text);
 
           let th4 = $("<th>");
@@ -191,7 +192,7 @@
   } else {//PC
     $("#condition-tbody").empty();
         const date = data[0].date.substr(0, 7);
-        $("#listMonth").html(date.substr(0,4)+"年"+date.substr(5,2)+ "月：体温・体調一覧");
+        $("#listMonth").html(date.substr(0,4)+"年"+date.substr(5,2)+ "月<br>体温・体調一覧");
         for (i = 0; i < data.length; i++) {
           let td1 = $("<td>");
           const date = data[i].date.replace("00:00:00", "");
@@ -207,27 +208,27 @@
           let text2 = "";
 
           if (data[i].condition == null || data[i].condition == undefined) {
-            text = '';
+            text = "";
           }else{
           if (data[i].condition.indexOf("1") != -1) {
               text += "味覚異常";
           }
           if (data[i].condition.indexOf("2") != -1) {
-            if(text == ''){
+            if(text == ""){
             text += "嗅覚異常";
             }else{
               text += "/嗅覚異常";
             }
           }
           if (data[i].condition.indexOf("3") != -1) {
-            if(text == ''){
-              text += '咳';
+            if(text == ""){
+              text += '咳・痰';
             }else{
-              text += "/咳";
+              text += "/咳・痰";
             }
           }
           if (data[i].condition.indexOf("4") != -1) {
-            if(text == ''){
+            if(text == ""){
             text += "倦怠感";
           }else{
             text += "/倦怠感";
@@ -237,6 +238,7 @@
             text2 = "生理中";
           }
         }
+        
           td3.text(text);
           let td4 = $("<td>");
 
@@ -361,18 +363,41 @@
             </tr>
             <tr>
               <th>症状</th>
-              <td>@if (strpos($condition->condition, '1') !== false)
-                味覚異常
+              <td><?php $text = ''; ?>
+                @if (strpos($condition->condition, '1') !== false)
+                <?php 
+                $text .= '味覚異常';
+                ?>
                 @endif
                 @if (strpos($condition->condition, '2') !== false)
-                /嗅覚異常
+                <?php
+                if ($text == ''){
+                $text .= '嗅覚異常';
+                }else{
+                $text .= '/嗅覚異常';
+                }
+                ?>
                 @endif
                 @if (strpos($condition->condition, '3') !== false)
-                /咳
+                <?php
+                if ($text == ''){
+                $text .= '咳・痰';
+                }else{
+                $text .= '/咳・痰';
+                }
+                ?>
                 @endif
                 @if (strpos($condition->condition, '4') !== false)
-                /倦怠感
-                @endif</td>
+                <?php
+                if ($text == ''){
+                $text .= '倦怠感';
+                }else{
+                $text .= '/倦怠感';
+                }
+                ?>
+                @endif
+                {{$text}}
+              </td>
             </tr>
             <tr>
               <th>コメント</th>
@@ -427,23 +452,46 @@
                 <td>@if (isset($condition->taion))
                   {{$condition->taion}}
                   @endif</td>
-                <td>@if (strpos($condition->condition, '1') !== false)
-                  味覚異常
+                <td><?php $text = ''; ?>
+                  @if (strpos($condition->condition, '1') !== false)
+                  <?php 
+                $text .= '味覚異常';
+                ?>
                   @endif
                   @if (strpos($condition->condition, '2') !== false)
-                  /嗅覚異常
+                  <?php
+                if ($text == ''){
+                $text .= '嗅覚異常';
+                }else{
+                $text .= '/嗅覚異常';
+                }
+                ?>
                   @endif
                   @if (strpos($condition->condition, '3') !== false)
-                  /咳
+                  <?php
+                if ($text == ''){
+                $text .= '咳・痰';
+                }else{
+                $text .= '/咳・痰';
+                }
+                ?>
                   @endif
                   @if (strpos($condition->condition, '4') !== false)
-                  /倦怠感
-                  @endif</td>
+                  <?php
+                if ($text == ''){
+                $text .= '倦怠感';
+                }else{
+                $text .= '/倦怠感';
+                }
+                ?>
+                  @endif
+                  {{$text}}
+                </td>
                 <td>@if (isset($condition->comment))
                   {{$condition->comment}}
                   @endif</td>
                 <td>@if (strpos($condition->condition, '5') !== false)
-                  <p>生理中</p>
+                  生理中
                   @endif
                 </td>
                 <td><a href="{{route('edit',['id'=>$user->id,'condition_id'=>$condition->id])}}">編集</a></td>

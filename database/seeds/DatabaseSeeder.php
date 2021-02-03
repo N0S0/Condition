@@ -114,5 +114,28 @@ class DatabaseSeeder extends Seeder
       'condition' => '1',
       'created_at' => '2020-12-07 00:00:00',
     ]);
+    DB::table('conditions')->insert([
+      'user_id' => 1,
+      'date' => '2021-02-01 00:00:00',
+      'taion' => 36.3,
+      'comment' => '特になし',
+      'created_at' => '2020-12-07 00:00:00',
+    ]);
+    DB::table('conditions')->insert([
+      'user_id' => 1,
+      'date' => '2021-02-02 00:00:00',
+      'taion' => 37.7,
+      'condition' => '4',
+      'comment' => 'やや体調不良',
+      'created_at' => '2020-12-07 00:00:00',
+    ]);
+    DB::table('conditions')->insert([
+      'user_id' => 1,
+      'date' => '2021-02-10 00:00:00',
+      'taion' => 36.9,
+      'condition' => '5',
+      'comment' => '特になし',
+      'created_at' => '2020-12-07 00:00:00',
+    ]);
   }
 }
