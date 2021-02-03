@@ -86,16 +86,6 @@
       </div>{{-- end of card-body --}}
     </div>{{-- end of card --}}
     <div>
-      後で消す<br>
-      id→admin
-      pass→admin2020<br>
-      MyPCではこちらも<br>
-      id→admin0001
-      pass→admin0001<br>
-      guestlogin<br>
-      id→guest
-      pass→guestpass
-
     </div>
   </div>{{-- end of col-md-8 --}}
 </div>{{-- end of row --}}

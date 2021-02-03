@@ -106,7 +106,7 @@ class CalendarView
 
   function todaysCondition($date)
   {
-    $todaysCondition = new getCondition($date);
+    $todaysCondition = new GetCondition($date);
     return $todaysCondition->getCondition($date);
   }
 }

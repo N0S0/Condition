@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 
-class getCondition
+class GetCondition
 {
 
   function getCondition($date)
