@@ -18,8 +18,10 @@
               @endif</li>
             <li>利用開始日：{{$date}}</li>
           </ul>
-          @if (Auth::id() != 4)
+          @if (Auth::id() != 1)
           <a href="{{route('closeAccount', ['id'=>$user->id])}}">アカウントを削除する</a>
+          @elseif(Auth::id() ==1)
+          ※ゲストアカウントは削除できません
           @endif
 
         </div>
