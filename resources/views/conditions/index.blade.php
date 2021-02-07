@@ -314,6 +314,9 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
+      @if (Auth::id() ==1)
+      <p class="guest-annotation">※ゲストログインの場合はログアウトすると入力したデータはリセットされます</p>
+      @endif
       <div class="card">
         <div class="card-header">
           <div>

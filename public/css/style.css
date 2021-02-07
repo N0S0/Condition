@@ -9,6 +9,9 @@
 }
 
 /* index */
+.guest-annotation {
+    color: red;
+}
 .month {
     display: flex;
     justify-content: space-around;

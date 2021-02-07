@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class LoginController extends Controller
 {
@@ -52,6 +55,8 @@ class LoginController extends Controller
   public function guestLogin()
   {
     if (Auth::loginUsingId(self::GUEST_USER_ID)) {
+      DB::table('conditions')->select('user_id', 1)->delete();
+      Artisan::call('db:seed', ['--class' => 'GuestDataSeeder']);
       return redirect()->route('index', ['id' => Auth::id()]);
     }
     return redirect()->route('index', ['id' => Auth::id()]);
