@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Database\Seeder;
+
 
 
 class LoginController extends Controller
@@ -56,7 +58,7 @@ class LoginController extends Controller
   {
     if (Auth::loginUsingId(self::GUEST_USER_ID)) {
       DB::table('conditions')->select('user_id', 1)->delete();
-      Artisan::call('db:seed', ['--class' => 'GuestDataSeeder']);
+      Artisan::call('db:seed', ['--class' => 'Database\Seeds\GuestDataSeeder']);
       return redirect()->route('index', ['id' => Auth::id()]);
     }
     return redirect()->route('index', ['id' => Auth::id()]);
