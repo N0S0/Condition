@@ -37,7 +37,8 @@
             "App\\": "app/"
         },
         "classmap": [
-            "database/seeds",
+            "database/seeds/DatabaseSeeder.php",
+            "database/seeds/GuestDataSeeder.php",
             "database/factories"
         ]
     },

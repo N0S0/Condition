@@ -13,7 +13,7 @@
             <label for="date">今日の日付</label>
             <input type="date" name="text" id="date" value="{{old('date', $condition['date'])->format('Y-m-d')}}">
             <br><label for="taion">今日の体温</label>
-            <input type="number" id="taion" step="0.1" value="{{old('taion', $condition['taion'])}}" name="taion">
+            <input type="number" id="taion" step="0.1" value="{{old('taion', $condition['taion'])}}" name="taion">℃
             <ul class="condition-check">
               <li>症状：</li>
               @if (strpos($condition['condition'],'1') !== false)
