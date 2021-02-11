@@ -17,7 +17,7 @@
           </ul></div>
         </div>
         <div class="card-body">
-          {!! $calendar->render() !!}
+          {!! $calendar->view() !!}
         </div>
       </div>
     </div>{{-- end of col-md-8 --}}

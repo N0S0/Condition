@@ -98,6 +98,17 @@ a {
     justify-content: space-between;
 }
 
+.not-thisMonth{
+    color: lightgray;
+}
+
+.Sat{
+    color: blue;
+}
+.Sun{
+    color: red;
+}
+
 /* closeAccount */
 .delete-message {
     font-size: 30px;
