@@ -58,6 +58,7 @@ class LoginController extends Controller
   {
     if (Auth::loginUsingId(self::GUEST_USER_ID)) {
       DB::table('conditions')->select('user_id', 1)->delete();
+      // Artisan::call('db:seed', ['--class' => 'Database\Seeds\GuestDataSeeder']);
       Artisan::call('db:seed', ['--class' => 'GuestDataSeeder']);
       return redirect()->route('index', ['id' => Auth::id()]);
     }

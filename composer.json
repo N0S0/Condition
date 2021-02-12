@@ -39,7 +39,8 @@
         "classmap": [
             "database/seeds/DatabaseSeeder.php",
             "database/seeds/GuestDataSeeder.php",
-            "database/factories"
+            "database/factories",
+            "app/models"
         ]
     },
     "autoload-dev": {
