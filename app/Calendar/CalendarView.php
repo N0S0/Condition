@@ -11,14 +11,24 @@ class CalendarView
 {
   private $carbon;
 
-  function __construct()
+  function __construct($date)
   {
-    $this->carbon = new Carbon();
+    $this->carbon = new Carbon($date);
   }
 
   public function getTitle()
   {
     return $this->carbon->format('Y年n月');
+  }
+
+  public function prevMonth()
+  {
+    return $this->carbon->copy()->subMonthNoOverflow()->format('Y-m');
+  }
+
+  public function nextMonth()
+  {
+    return $this->carbon->copy()->addMonthNoOverflow()->format('Y-m');
   }
 
   public function calendarDate()
@@ -31,7 +41,7 @@ class CalendarView
     $lastDay = $lastDate->dayOfWeek;
 
     // 前月
-    for($i = $startDay; $i >= 1; $i--){
+    for ($i = $startDay; $i >= 1; $i--) {
       $getDates[] = $startDate->copy()->subDay($i);
     }
     // 今月
@@ -40,7 +50,7 @@ class CalendarView
       $getDate->addDay(1);
     }
     // 来月
-    for($i = 1; $i < (7 - $lastDay); $i++){
+    for ($i = 1; $i < (7 - $lastDay); $i++) {
       $getDates[] = $lastDate->copy()->addDay($i);
     }
     return $getDates;
@@ -72,44 +82,43 @@ class CalendarView
     $i = 0;
 
     foreach ($viewDates as $viewDate) {
-      $date = $viewDate;
       //その日の体調
-      $data = $this->todaysCondition($date);
-
-      if($viewDate->format('m') == $this->carbon->format('m')){
+      $data = $this->todaysCondition($viewDate);
+      if ($viewDate->format('m') == $this->carbon->format('m')) {
         $html[] = '<td class="' . $viewDate->format('D') . '">';
-      }else{
-        $html[] = '<td class="not-thisMonth">';
-      }
 
-      if (isset($data[0]->id)) {
-        $html[] = '<a href="' . route('detailTodaysCondition', ['id' => Auth::id(), 'condition_id' => $data[0]->id]) . '">' . $viewDate->format('j') . '</a>';
+        if (isset($data[0]->id)) {
+          $html[] = '<a href="' . route('detailTodaysCondition', ['id' => Auth::id(), 'condition_id' => $data[0]->id]) . '">' . $viewDate->format('j') . '</a>';
+          $html[] = '<br>';
+
+          if (isset($data[0]->taion)) {
+            if ($data[0]->taion < 37.5) {
+              $html[] = '<p class="taion-green">●</p>';
+            } else {
+              $html[] = '<p class="taion-red">●</p>';
+            }
+          }
+          if (isset($data[0]->condition)) {
+            $val1 = '/1|2|3|4/';
+            if (preg_match($val1, $data[0]->condition) == 1) {
+              $html[] = '<p class="calendar-condition">▲</p>';
+            }
+            $val2 = '/5/';
+            if (preg_match($val2, $data[0]->condition) == 1) {
+              $html[] = '<p class="calendar-physiology">■</p>';
+            }
+          }
+          if (isset($data[0]->comment)) {
+            $html[] = '<p class="calendar-comment">◆</p>';
+          }
+        } else {
+          $html[] = $viewDate->format('j');
+        }
       } else {
+        $html[] = '<td class="not-thisMonth">';
         $html[] = $viewDate->format('j');
       }
-      $html[] = '<br>';
 
-      if (isset($data[0]->taion)) {
-        // var_dump($data[0]->taion);
-        if ($data[0]->taion < 37.5) {
-          $html[] = '<p class="taion-green">●</p>';
-        } else {
-          $html[] = '<p class="taion-red">●</p>';
-        }
-      }
-      if (isset($data[0]->condition)) {
-        $val1 = '/1|2|3|4/';
-        if (preg_match($val1, $data[0]->condition) == 1) {
-          $html[] = '<p class="calendar-condition">▲</p>';
-        }
-        $val2 = '/5/';
-        if (preg_match($val2, $data[0]->condition) == 1) {
-          $html[] = '<p class="calendar-physiology">■</p>';
-        }
-      }
-      if (isset($data[0]->comment)) {
-        $html[] = '<p class="calendar-comment">◆</p>';
-      }
 
       $html[] = '</td>';
       $i++;
