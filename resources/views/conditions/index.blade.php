@@ -453,7 +453,7 @@
                   {{$condition->date->format('Y-m-d')}}
                 </td>
                 <td>@if (isset($condition->taion))
-                  {{$condition->taion}}
+                  {{$condition->taion}}℃
                   @endif</td>
                 <td><?php $text = ''; ?>
                   @if (strpos($condition->condition, '1') !== false)
