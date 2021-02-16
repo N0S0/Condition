@@ -4,7 +4,7 @@ An app that manages your physical condition.
 
 ## DEMO
 
-![DEMO](http://condition.sono-portfolio.work/)
+[DEMO](http://condition.sono-portfolio.work/)
 
 ## Features
 
